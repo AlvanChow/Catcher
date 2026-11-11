@@ -23,7 +23,7 @@ h1 em { display: block; font-style: normal; color: var(--teal); }
 .sub { margin: 20px auto 0; max-width: 44ch; color: var(--muted); font-size: 18px; }
 .band { padding: 56px 0 24px; }
 .steps { position: relative; width: min(600px, 100%); margin: 0 auto; padding: 0; list-style: none; display: grid; gap: 16px; }
-.steps::before { content: ""; position: absolute; left: 17px; top: 24px; bottom: 24px; width: 2px; background: var(--rule); }
+.steps li:not(:last-child)::after { content: ""; position: absolute; left: 17px; top: 60px; bottom: -22px; width: 2px; background: var(--rule); }
 .steps li { position: relative; display: grid; grid-template-columns: 36px 1fr; gap: 18px; align-items: start; }
 .num { position: relative; z-index: 1; width: 36px; height: 36px; margin-top: 18px; border-radius: 50%; display: grid; place-items: center; background: var(--teal); color: #fff; font-weight: 700; font-size: 15px; box-shadow: 0 0 0 6px var(--ground); }
 .card { padding: 22px 24px; border-radius: 18px; background: var(--paper); border: 1px solid var(--rule); box-shadow: 0 10px 28px -22px rgb(10 40 50 / .45); }
