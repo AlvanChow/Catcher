@@ -11,7 +11,7 @@ function call(body, env = {}) {
     handler({ method: 'POST', headers: { 'x-forwarded-for': `10.0.0.${Math.floor(Math.random() * 250)}` }, body }, res);
   });
 }
-const contact = { name: 'Jane Smith', phone: '(213) 555-0123', email: 'jane@firm.com', website: 'firm.com' };
+const contact = { name: 'Jane Smith', phone: '(213) 555-0123', email: 'jane@firm.com' };
 
 test('step 1 sends a lead email with contact details', async () => {
   const r = await call({ stage: 'contact', ...contact });
@@ -45,4 +45,11 @@ test('rejects bad contact details and honeypot sends nothing', async () => {
 test('booked sends a booked-a-call email', async () => {
   const r = await call({ stage: 'booked', leadId: 'abcdefabcdef', ...contact });
   assert.match(r.sent[0].body.subject, /^Booked a call: Jane Smith/);
+});
+
+test('website is optional and only shows in the subject when given', async () => {
+  const r = await call({ stage: 'contact', ...contact });
+  assert.equal(r.sent[0].body.subject, 'New lead (step 1): Jane Smith');
+  const w = await call({ stage: 'contact', ...contact, website: 'firm.com' });
+  assert.equal(w.sent[0].body.subject, 'New lead (step 1): Jane Smith · firm.com');
 });

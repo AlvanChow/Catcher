@@ -528,7 +528,6 @@ footer:not(.ft2) { display: none; }
         <div class="ap-f"><label for="ap-name">Name</label><input id="ap-name" name="name" type="text" autocomplete="name" placeholder="Jane Smith"></div>
         <div class="ap-f"><label for="ap-phone">Phone number</label><input id="ap-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="(213) 555-0123"></div>
         <div class="ap-f"><label for="ap-email">Email</label><input id="ap-email" name="email" type="email" autocomplete="email" placeholder="jane@yourfirm.com"></div>
-        <div class="ap-f"><label for="ap-site">Firm website</label><input id="ap-site" name="website" type="text" autocomplete="url" placeholder="yourfirm.com"></div>
         <p class="ap-err" role="alert"></p>
         <div class="ap-actions"><button class="ap-ok" type="submit">OK</button></div>
         <p class="ap-legal">By clicking OK, you agree to get calls and texts from Catcher at this number, including automated messages, about your call. Consent isn't a condition of purchase. Msg &amp; data rates may apply. Reply STOP to opt out.</p>
@@ -642,7 +641,7 @@ footer:not(.ft2) { display: none; }
   const val = (n) => (form.elements[n].value || '').trim();
   const digits = (p) => p.replace(/\D/g, '');
   const post = async (stage) => {
-    const body = { stage, leadId, name: val('name'), phone: val('phone'), email: val('email'), website: val('website'),
+    const body = { stage, leadId, name: val('name'), phone: val('phone'), email: val('email'),
       answering: data.answering, volume: data.volume, attorneys: data.attorneys, notes: val('notes'),
       company: val('company'), page: location.pathname, referrer: document.referrer, utm };
     const r = await fetch('/api/lead', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) });
@@ -658,7 +657,6 @@ footer:not(.ft2) { display: none; }
       if (!val('name')) return err('Enter your name.');
       const d = digits(val('phone')); if (d.length < 10 || d.length > 11) return err('Enter a valid phone number.');
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(val('email'))) return err('Enter a valid email.');
-      if (!val('website')) return err('Enter your firm website.');
       err(); busy(true);
       try { await post('contact'); } catch (x) { busy(false); return err(x.message); }
       busy(false); return show(i + 1);

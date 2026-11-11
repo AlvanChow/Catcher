@@ -64,7 +64,7 @@ module.exports = async function handler(req, res) {
     notes: clean(b.notes, 2000),
   };
   const digits = lead.phone.replace(/\D/g, '');
-  if (!lead.name || digits.length < 10 || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(lead.email) || !lead.website) {
+  if (!lead.name || digits.length < 10 || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(lead.email)) {
     return res.status(400).json({ error: 'Missing or invalid contact details' });
   }
 
@@ -94,7 +94,7 @@ module.exports = async function handler(req, res) {
   ].filter(([, v]) => v);
 
   const title = { contact: 'New lead (step 1)', complete: 'Finished the form', booked: 'Booked a call' }[stage];
-  const subject = `${title}: ${lead.name} · ${lead.website}`;
+  const subject = `${title}: ${lead.name}${lead.website ? ` · ${lead.website}` : ''}`;
   const html = `<div style="font-family:-apple-system,Helvetica,Arial,sans-serif;color:#1b1f2e">
 <h2 style="margin:0 0 4px;font-size:20px">${esc(title)}</h2>
 <p style="margin:0 0 16px;color:#596078">${{ contact: 'They gave their contact details. Answers follow if they finish the form.', complete: 'Every answer is below. Next they pick a time.', booked: 'They booked a call in Calendly. The time is in the Calendly invite.' }[stage]}</p>
