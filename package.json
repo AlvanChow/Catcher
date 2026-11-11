@@ -1,0 +1,11 @@
+{
+  "name": "catcher",
+  "private": true,
+  "description": "Catcher monorepo: landers, website, CRM and client projects.",
+  "workspaces": ["apps/*", "packages/*"],
+  "scripts": {
+    "dev:lander": "npm --workspace apps/lander run dev",
+    "test": "npm --workspaces --if-present run test"
+  },
+  "engines": { "node": ">=20" }
+}

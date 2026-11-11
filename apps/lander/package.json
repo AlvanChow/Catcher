@@ -1,0 +1,9 @@
+{
+  "name": "@catcher/lander",
+  "private": true,
+  "description": "catchersolutions.com lander: static pages plus the /api/lead form handler.",
+  "scripts": {
+    "dev": "vercel dev",
+    "test": "node --test test/*.test.js"
+  }
+}
