@@ -496,8 +496,10 @@ footer:not(.ft2) { display: none; }
 .ap-step { display: none; }
 .ap-step.on { display: block; animation: ap-in .22s ease-out; }
 @keyframes ap-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
-.ap-q { display: flex; align-items: baseline; gap: 10px; margin: 0 0 6px; font-size: 24px; line-height: 1.25; font-weight: 600; letter-spacing: -0.015em; color: var(--ink); }
-.ap-n { flex: none; font: 600 14px var(--font); color: var(--teal-ink); }
+.ap-q { display: flex; align-items: flex-start; gap: 10px; margin: 0 0 6px; font-size: 24px; line-height: 1.25; font-weight: 600; letter-spacing: -0.015em; color: var(--ink); }
+.ap-n { flex: none; display: flex; align-items: center; height: 1.25em; font: 600 14px var(--font); line-height: 1; color: var(--teal-ink); }
+.ap-q .ap-n { height: 30px; }
+@media (max-width: 520px) { .ap-q .ap-n { height: 26px; } }
 .ap-hint { margin: 0 0 18px 32px; color: var(--muted); font-size: 15px; }
 .ap-f { display: grid; gap: 6px; margin-top: 16px; }
 .ap-f label { font-size: 14px; font-weight: 600; color: var(--ink); }

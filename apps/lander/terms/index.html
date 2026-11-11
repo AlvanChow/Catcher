@@ -23,16 +23,16 @@ h1 em { display: block; font-style: normal; color: var(--teal); }
 .sub { margin: 20px auto 0; max-width: 44ch; color: var(--muted); font-size: 18px; }
 .band { padding: 56px 0 24px; }
 .steps { position: relative; width: min(600px, 100%); margin: 0 auto; padding: 0; list-style: none; display: grid; gap: 16px; }
-.steps li:not(:last-child)::after { content: ""; position: absolute; left: 17px; top: 60px; bottom: -22px; width: 2px; background: var(--rule); }
-.steps li { position: relative; display: grid; grid-template-columns: 36px 1fr; gap: 18px; align-items: start; }
-.num { position: relative; z-index: 1; width: 36px; height: 36px; margin-top: 18px; border-radius: 50%; display: grid; place-items: center; background: var(--teal); color: #fff; font-weight: 700; font-size: 15px; box-shadow: 0 0 0 6px var(--ground); }
+.steps > li:not(:last-child)::after { content: ""; position: absolute; left: 17px; top: 64px; bottom: -14px; width: 2px; background: var(--rule); }
+.steps > li { position: relative; display: grid; grid-template-columns: 36px 1fr; gap: 18px; align-items: start; }
+.num { position: relative; z-index: 1; width: 36px; height: 36px; margin-top: 20px; border-radius: 50%; display: grid; place-items: center; background: var(--teal); color: #fff; font-weight: 700; font-size: 15px; }
 .card { padding: 22px 24px; border-radius: 18px; background: var(--paper); border: 1px solid var(--rule); box-shadow: 0 10px 28px -22px rgb(10 40 50 / .45); }
 .card h2 { margin: 0; font-size: 20px; font-weight: 650; letter-spacing: -0.01em; }
 .card p { margin: 6px 0 0; color: var(--muted); }
 .tips { margin-top: 0; }
 .tips h2 { margin: 0 0 12px; font-size: 20px; }
 .tips ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
-.tips li { display: flex; gap: 12px; align-items: center; }
+.tips li { display: flex; gap: 12px; align-items: flex-start; }
 .ck { flex: none; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; background: #e6f6ee; color: #12805c; }
 .doc { width: min(720px, 100%); margin: 0 auto; padding: 8px 0 24px; }
 .doc h1 { font-size: clamp(32px, 4.4vw, 44px); text-align: left; }
@@ -41,14 +41,14 @@ h1 em { display: block; font-style: normal; color: var(--teal); }
 .doc p, .doc li { color: #2f3546; }
 .doc a { color: var(--teal-ink); }
 .faq { padding: 48px 0 0; }
-.faq h2 { width: min(600px, 100%); margin: 0 auto 16px; font-size: 28px; letter-spacing: -0.02em; }
-.faq-list { width: min(600px, 100%); margin: 0 auto; display: grid; gap: 10px; }
+.faq h2 { box-sizing: border-box; width: min(600px, 100%); padding-left: 54px; margin: 0 auto 16px; font-size: 28px; letter-spacing: -0.02em; }
+.faq-list { box-sizing: border-box; width: min(600px, 100%); padding-left: 54px; margin: 0 auto; display: grid; gap: 10px; }
 .faq details { border-radius: 16px; background: var(--paper); border: 1px solid var(--rule); }
-.faq summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 22px; cursor: pointer; list-style: none; font-size: 17px; font-weight: 600; }
+.faq summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 24px; cursor: pointer; list-style: none; font-size: 17px; font-weight: 600; }
 .faq summary::-webkit-details-marker { display: none; }
-.faq summary::after { content: "+"; flex: none; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--teal-soft); color: var(--teal-ink); font-size: 18px; font-weight: 500; }
-.faq details[open] summary::after { content: "−"; }
-.faq details p { margin: 0; padding: 0 22px 20px; color: var(--muted); }
+.faq summary::after { content: ""; flex: none; width: 28px; height: 28px; border-radius: 50%; background: var(--teal-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 6v12M6 12h12' stroke='%23076b69' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E") center/16px no-repeat; }
+.faq details[open] summary::after { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12h12' stroke='%23076b69' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E"); }
+.faq details p { margin: 0; padding: 0 24px 20px; color: var(--muted); }
 .faq summary:focus-visible { outline: 3px solid rgb(10 133 130 / .45); outline-offset: 2px; border-radius: 16px; }
 .ft2 { margin-top: 96px; padding: 56px 0 48px; background: #0c1d1f; color: rgb(255 255 255 / .62); text-align: center; }
 .ft2-brand { display: inline-flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; font-size: 22px; font-weight: 600; }
@@ -58,7 +58,7 @@ h1 em { display: block; font-style: normal; color: var(--teal); }
 .ft2-links a:hover { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
 .ft2-upd { margin: 18px 0 0; font-size: 12px; }
 .ft2-copy { margin: 8px 0 0; font-size: 12px; font-weight: 700; color: rgb(255 255 255 / .85); }
-@media (max-width: 520px) { .hero { padding: 24px 0 8px; } .band { padding-top: 28px; } .card { padding: 18px; } .steps li { gap: 12px; } .faq { padding-top: 40px; } .faq h2 { font-size: 24px; } .faq summary { padding: 16px 18px; font-size: 16px; } .faq details p { padding: 0 18px 18px; } .ft2 { margin-top: 56px; padding: 40px 0 36px; } .ft2-links { gap: 0 4px; } .ft2-links a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 10px; } }
+@media (max-width: 520px) { .hero { padding: 24px 0 8px; } .band { padding-top: 28px; } .card { padding: 18px; } .steps > li { gap: 12px; } .num { margin-top: 16px; } .steps > li:not(:last-child)::after { top: 60px; } .faq h2, .faq-list { padding-left: 48px; } .faq { padding-top: 40px; } .faq h2 { font-size: 24px; } .faq summary { padding: 16px 18px; font-size: 16px; } .faq details p { padding: 0 18px 18px; } .ft2 { margin-top: 56px; padding: 40px 0 36px; } .ft2-links { gap: 0 4px; } .ft2-links a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 10px; } }
 </style>
 </head>
 <body>
