@@ -154,7 +154,7 @@ confirmation = f"""<section class="wrap hero">
 </section>
 <section class="faq" aria-labelledby="faq-title">
   <div class="wrap">
-    <h2 id="faq-title">Questions firms ask</h2>
+    <h2 id="faq-title">Frequently asked questions</h2>
     <div class="faq-list">{faq_items}</div>
   </div>
 </section>
