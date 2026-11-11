@@ -41,3 +41,8 @@ test('rejects bad contact details and honeypot sends nothing', async () => {
   assert.equal(h.code, 200);
   assert.equal(h.sent.length, 0);
 });
+
+test('booked sends a booked-a-call email', async () => {
+  const r = await call({ stage: 'booked', leadId: 'abcdefabcdef', ...contact });
+  assert.match(r.sent[0].body.subject, /^Booked a call: Jane Smith/);
+});

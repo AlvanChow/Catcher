@@ -489,6 +489,12 @@ footer:not(.ft2) { display: none; }
 .ap form.ap-body { display: block; width: auto; max-width: none; margin: 0; grid-template-columns: none; }
 .ap-opt:focus-visible, .ap-ok:focus-visible, .ap-backbtn:focus-visible, .ap-x:focus-visible { outline: 3px solid rgb(10 133 130 / .45); outline-offset: 2px; }
 .ap-opt:focus:not(:focus-visible) { outline: 0; }
+.ap.ap-wide { width: min(760px, 100%); }
+.ap-cal { min-height: 660px; margin: 4px -12px 0; }
+.ap-cal .calendly-inline-widget, .ap-cal iframe { width: 100%; min-height: 660px; border: 0; }
+.ap-cal-load { display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 200px; margin: 0; color: var(--muted); }
+.ap-cal-alt { margin: 8px 0 0; text-align: center; font-size: 14px; }
+.ap-cal-alt a { color: var(--teal-ink); }
 .ap-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 @media (max-width: 520px) { .ap-body { padding: 22px 20px 24px; } .ap-bar { margin: 6px 20px 0; } .ap-q { font-size: 21px; } .ap-hint { margin-left: 0; } }
 </style>
@@ -554,7 +560,15 @@ footer:not(.ft2) { display: none; }
         <p class="ap-hint">A sentence is plenty</p>
         <div class="ap-f"><textarea id="ap-notes" name="notes" placeholder="Type your answer here…" aria-label="What would you want Catcher to handle first?"></textarea></div>
         <p class="ap-err" role="alert"></p>
-        <div class="ap-actions"><button class="ap-backbtn" type="button" data-ap-back>Back</button><button class="ap-ok" type="submit">Submit</button></div>
+        <div class="ap-actions"><button class="ap-backbtn" type="button" data-ap-back>Back</button><button class="ap-ok" type="submit">OK</button></div>
+      </section>
+
+      <section class="ap-step" data-step="book">
+        <h2 class="ap-q"><span class="ap-n">6→</span>Pick a time for your call</h2>
+        <p class="ap-hint">We'll text you to confirm your call</p>
+        <div class="ap-cal" aria-live="polite"><p class="ap-cal-load"><span class="ap-spin"></span>Loading the calendar</p></div>
+        <p class="ap-err" role="alert"></p>
+        <p class="ap-cal-alt"><a href="#" target="_blank" rel="noopener" data-cal-open>Open the booking page</a></p>
       </section>
     </form>
   </div>
@@ -562,6 +576,9 @@ footer:not(.ft2) { display: none; }
 
 <script>
 (() => {
+  // Calendly event link for the booking step, e.g. 'https://calendly.com/catcher/intro-call'.
+  // Leave empty to skip the step and go straight to /confirmation.
+  const CALENDLY_URL = '';
   const back = document.getElementById('apply');
   const form = back.querySelector('form');
   const steps = [...form.querySelectorAll('.ap-step')];
@@ -616,7 +633,7 @@ footer:not(.ft2) { display: none; }
     if (!r.ok) throw new Error("Couldn't save that. Check your connection and try again.");
     const j = await r.json().catch(() => ({})); if (j.leadId) leadId = j.leadId;
   };
-  const busy = (on) => { const b = steps[i].querySelector('.ap-ok'); b.disabled = on; b.innerHTML = on ? '<span class="ap-spin"></span>' : (i === steps.length - 1 ? 'Submit' : 'OK'); };
+  const busy = (on) => { const b = steps[i].querySelector('.ap-ok'); b.disabled = on; b.innerHTML = on ? '<span class="ap-spin"></span>' : 'OK'; };
 
   async function next() {
     const s = steps[i];
@@ -635,9 +652,36 @@ footer:not(.ft2) { display: none; }
       err(); busy(true);
       try { await post('complete'); } catch (x) { busy(false); return err(x.message); }
       try { sessionStorage.setItem('catcher_name', val('name').split(' ')[0]); } catch (_) {}
-      location.href = '/confirmation';
+      if (!CALENDLY_URL) { location.href = '/confirmation'; return; }
+      show(i + 1); loadCalendar();
     }
   }
+  function calUrl() {
+    const u = new URL(CALENDLY_URL);
+    u.searchParams.set('name', val('name')); u.searchParams.set('email', val('email'));
+    u.searchParams.set('a1', '+1' + digits(val('phone')).replace(/^1(?=\d{10}$)/, ''));
+    u.searchParams.set('hide_gdpr_banner', '1'); u.searchParams.set('hide_event_type_details', '1');
+    u.searchParams.set('primary_color', '0a8582');
+    Object.entries(utm).forEach(([k, v]) => u.searchParams.set(k, v));
+    return u.toString();
+  }
+  let calLoaded = false;
+  function loadCalendar() {
+    back.querySelector('.ap').classList.add('ap-wide');
+    const box = back.querySelector('.ap-cal'), url = calUrl();
+    back.querySelector('[data-cal-open]').href = url;
+    if (calLoaded) return;
+    calLoaded = true;
+    const done = () => { if (!window.Calendly) return fail(); box.innerHTML = ''; window.Calendly.initInlineWidget({ url, parentElement: box }); };
+    const fail = () => { box.innerHTML = ''; steps[i].querySelector('.ap-err').textContent = 'Booking is temporarily unavailable. Your answers are saved. We\'ll text you to set up your call.'; };
+    const sc = document.createElement('script'); sc.src = 'https://assets.calendly.com/assets/external/widget.js'; sc.async = true;
+    sc.onload = done; sc.onerror = fail; document.head.appendChild(sc);
+  }
+  window.addEventListener('message', (e) => {
+    if (e.origin !== 'https://calendly.com' || !e.data || e.data.event !== 'calendly.event_scheduled') return;
+    try { sessionStorage.setItem('catcher_booked', '1'); } catch (_) {}
+    post('booked').catch(() => {}).finally(() => { location.href = '/confirmation'; });
+  });
   form.addEventListener('submit', (e) => { e.preventDefault(); next(); });
   form.elements.phone.addEventListener('input', (e) => {
     const d = digits(e.target.value).replace(/^1/, '').slice(0, 10);

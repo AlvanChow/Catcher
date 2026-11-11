@@ -95,19 +95,30 @@ steps = [
     ("Step 2: Check your email", "We'll send the time and the link for your call. Check spam too."),
     ("Step 3: Say yes", "Open the invite and click Yes. Now the call is on your calendar."),
 ]
+# Shown instead when the visitor booked a time in Calendly on the last form step.
+booked_steps = [
+    ("Step 1: Check your email", "We sent you the time and the link for your call. Look in your inbox. Check spam too."),
+    ("Step 2: Say yes", "Open the invite and click Yes. Now the call is on your calendar."),
+    ("Step 3: Reply YES to our text", "We'll text you before the call. Reply YES so we know you're coming."),
+]
 tips = [
     "Join 5 minutes early.",
     "Bring whoever runs intake at your firm.",
     "Have your current intake questions close by.",
     "Know which case types you take, and where.",
 ]
-step_items = "".join(
-    f'<li><span class="num">{n}</span><div class="card"><h2>{t}</h2><p>{d}</p></div></li>'
-    for n, (t, d) in enumerate(steps, 1)
-)
+def items(rows, kind):
+    return "".join(
+        f'<li data-show="{kind}"><span class="num">{n}</span><div class="card"><h2>{t}</h2><p>{d}</p></div></li>'
+        for n, (t, d) in enumerate(rows, 1)
+    )
+
+
+step_items = items(steps, "open") + items(booked_steps, "booked")
 tip_items = "".join(f"<li>{CHECK}{t}</li>" for t in tips)
 confirmation = f"""<section class="wrap hero">
-  <h1><span data-name>You're in,</span> <em>here's what happens next</em></h1>
+  <h1 data-show="open"><span data-name>You're in,</span> <em>here's what happens next</em></h1>
+  <h1 data-show="booked">Your call is booked, <em>but not confirmed yet</em></h1>
   <p class="sub">Do these 3 things to lock in your call</p>
 </section>
 <section class="band">
@@ -116,7 +127,10 @@ confirmation = f"""<section class="wrap hero">
   </div>
 </section>
 <script>
-try {{ const n = sessionStorage.getItem('catcher_name'); if (n) document.querySelector('[data-name]').textContent = "You're in, " + n.replace(/[<>]/g, '') + ","; }} catch (_) {{}}
+let booked = false;
+try {{ booked = sessionStorage.getItem('catcher_booked') === '1'; }} catch (_) {{}}
+document.querySelectorAll('[data-show]').forEach(el => {{ if (el.dataset.show !== (booked ? 'booked' : 'open')) el.remove(); }});
+try {{ const n = sessionStorage.getItem('catcher_name'); const el = document.querySelector('[data-name]'); if (n && el) el.textContent = "You're in, " + n.replace(/[<>]/g, '') + ","; }} catch (_) {{}}
 </script>"""
 
 privacy = """<article class="wrap doc">

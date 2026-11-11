@@ -1,7 +1,7 @@
 // POST /api/lead: receives the apply form and emails it to the team through Resend.
 //
-// The form posts twice: stage "contact" after step 1 (so a lead who drops off is not lost)
-// and stage "complete" with every answer. Both carry the same leadId so the two emails pair up.
+// The form posts up to three times: stage "contact" after step 1 (so a lead who drops off is not lost)
+// stage "complete" with every answer, and stage "booked" once they pick a time in Calendly. Both carry the same leadId so the two emails pair up.
 //
 // Environment (set in Vercel, never committed):
 //   RESEND_API_KEY  Resend API key
@@ -47,7 +47,7 @@ module.exports = async function handler(req, res) {
     return res.status(400).json({ error: 'Bad JSON' });
   }
 
-  const stage = b.stage === 'complete' ? 'complete' : 'contact';
+  const stage = ['complete', 'booked'].includes(b.stage) ? b.stage : 'contact';
   const leadId = /^[a-f0-9]{12}$/.test(b.leadId || '') ? b.leadId : crypto.randomBytes(6).toString('hex');
 
   // Honeypot: bots fill the hidden "company" field. Pretend success, send nothing.
@@ -93,11 +93,11 @@ module.exports = async function handler(req, res) {
     ['Received', new Date().toISOString()],
   ].filter(([, v]) => v);
 
-  const title = stage === 'complete' ? 'Finished the form' : 'New lead (step 1)';
+  const title = { contact: 'New lead (step 1)', complete: 'Finished the form', booked: 'Booked a call' }[stage];
   const subject = `${title}: ${lead.name} · ${lead.website}`;
   const html = `<div style="font-family:-apple-system,Helvetica,Arial,sans-serif;color:#1b1f2e">
 <h2 style="margin:0 0 4px;font-size:20px">${esc(title)}</h2>
-<p style="margin:0 0 16px;color:#596078">${stage === 'complete' ? 'Every answer is below.' : 'They gave their contact details. Answers follow if they finish the form.'}</p>
+<p style="margin:0 0 16px;color:#596078">${{ contact: 'They gave their contact details. Answers follow if they finish the form.', complete: 'Every answer is below. Next they pick a time.', booked: 'They booked a call in Calendly. The time is in the Calendly invite.' }[stage]}</p>
 <table cellpadding="8" style="border-collapse:collapse;font-size:14px">${rows
     .map(([k, v]) => `<tr><td style="border-top:1px solid #cde0e4;color:#596078;white-space:nowrap;vertical-align:top">${esc(k)}</td><td style="border-top:1px solid #cde0e4">${esc(v)}</td></tr>`)
     .join('')}</table></div>`;
