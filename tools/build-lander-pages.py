@@ -61,7 +61,7 @@ h1 em { display: block; font-style: normal; color: var(--teal); }
 .ft2-links a:hover { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
 .ft2-upd { margin: 18px 0 0; font-size: 12px; }
 .ft2-copy { margin: 8px 0 0; font-size: 12px; font-weight: 700; color: rgb(255 255 255 / .85); }
-@media (max-width: 520px) { .hero { padding-top: 32px; } .card { padding: 18px; } .steps li { gap: 12px; } }
+@media (max-width: 520px) { .hero { padding: 24px 0 8px; } .band { padding-top: 28px; } .card { padding: 18px; } .steps li { gap: 12px; } .faq { padding-top: 40px; } .faq h2 { font-size: 24px; } .faq summary { padding: 16px 18px; font-size: 16px; } .faq details p { padding: 0 18px 18px; } .ft2 { margin-top: 56px; padding: 40px 0 36px; } .ft2-links { gap: 0 4px; } .ft2-links a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 10px; } }
 """
 
 FOOTER = f"""<footer class="ft2">
