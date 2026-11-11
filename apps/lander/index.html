@@ -571,16 +571,8 @@ footer:not(.ft2) { display: none; }
         <div class="ap-actions"><button class="ap-backbtn" type="button" data-ap-back>Back</button><button class="ap-ok" type="submit">OK</button></div>
       </section>
 
-      <section class="ap-step" data-step="notes">
-        <h2 class="ap-q"><span class="ap-n">5→</span>What would you want Catcher to handle first?</h2>
-        <p class="ap-hint">A sentence is plenty</p>
-        <div class="ap-f"><textarea id="ap-notes" name="notes" placeholder="Type your answer here…" aria-label="What would you want Catcher to handle first?"></textarea></div>
-        <p class="ap-err" role="alert"></p>
-        <div class="ap-actions"><button class="ap-backbtn" type="button" data-ap-back>Back</button><button class="ap-ok" type="submit">OK</button></div>
-      </section>
-
       <section class="ap-step" data-step="book">
-        <h2 class="ap-q"><span class="ap-n">6→</span>Pick a time for your call</h2>
+        <h2 class="ap-q"><span class="ap-n">5→</span>Pick a time for your call</h2>
         <p class="ap-hint">We'll text you to confirm your call</p>
         <div class="ap-cal" aria-live="polite"><p class="ap-cal-load"><span class="ap-spin"></span>Loading the calendar</p></div>
         <p class="ap-err" role="alert"></p>
@@ -642,7 +634,7 @@ footer:not(.ft2) { display: none; }
   const digits = (p) => p.replace(/\D/g, '');
   const post = async (stage) => {
     const body = { stage, leadId, name: val('name'), phone: val('phone'), email: val('email'),
-      answering: data.answering, volume: data.volume, attorneys: data.attorneys, notes: val('notes'),
+      answering: data.answering, volume: data.volume, attorneys: data.attorneys,
       company: val('company'), page: location.pathname, referrer: document.referrer, utm };
     const r = await fetch('/api/lead', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) });
     if (r.status === 429) throw new Error('Too many attempts from this connection. Try again in an hour.');
@@ -661,13 +653,16 @@ footer:not(.ft2) { display: none; }
       try { await post('contact'); } catch (x) { busy(false); return err(x.message); }
       busy(false); return show(i + 1);
     }
-    if (s.dataset.choice) { if (!data[s.dataset.choice]) return err('Pick one to continue.'); err(); return show(i + 1); }
-    if (s.dataset.step === 'notes') {
-      if (val('notes').length < 2) return err('Tell us a bit more.');
-      err(); busy(true);
+    if (s.dataset.choice) {
+      if (!data[s.dataset.choice]) return err('Pick one to continue.');
+      err();
+      const after = steps[i + 1];
+      if (after && after.dataset.step !== 'book') return show(i + 1);
+      busy(true);
       try { await post('complete'); } catch (x) { busy(false); return err(x.message); }
+      busy(false);
       try { sessionStorage.setItem('catcher_name', val('name').split(' ')[0]); } catch (_) {}
-      if (!CALENDLY_URL) { location.href = '/confirmation'; return; }
+      if (!CALENDLY_URL || !after) { location.href = '/confirmation'; return; }
       show(i + 1); loadCalendar();
     }
   }
