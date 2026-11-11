@@ -43,6 +43,16 @@ h1 em { display: block; font-style: normal; color: var(--teal); }
 .doc h2 { margin: 32px 0 8px; font-size: 20px; letter-spacing: -0.01em; scroll-margin-top: 24px; }
 .doc p, .doc li { color: #2f3546; }
 .doc a { color: var(--teal-ink); }
+.faq { padding: 48px 0 0; }
+.faq h2 { width: min(600px, 100%); margin: 0 auto 16px; font-size: 28px; letter-spacing: -0.02em; }
+.faq-list { width: min(600px, 100%); margin: 0 auto; display: grid; gap: 10px; }
+.faq details { border-radius: 16px; background: var(--paper); border: 1px solid var(--rule); }
+.faq summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 22px; cursor: pointer; list-style: none; font-size: 17px; font-weight: 600; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; flex: none; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--teal-soft); color: var(--teal-ink); font-size: 18px; font-weight: 500; }
+.faq details[open] summary::after { content: "−"; }
+.faq details p { margin: 0; padding: 0 22px 20px; color: var(--muted); }
+.faq summary:focus-visible { outline: 3px solid rgb(10 133 130 / .45); outline-offset: 2px; border-radius: 16px; }
 .ft2 { margin-top: 96px; padding: 56px 0 48px; background: #0c1d1f; color: rgb(255 255 255 / .62); text-align: center; }
 .ft2-brand { display: inline-flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; font-size: 22px; font-weight: 600; }
 .ft2-note { margin: 22px auto 0; max-width: 64ch; font-size: 12px; line-height: 1.6; }
@@ -115,6 +125,22 @@ def items(rows, kind):
 
 
 step_items = items(steps, "open") + items(booked_steps, "booked")
+
+faqs = [
+    ("Will callers know they're talking to AI?",
+     "That's your call. On our setup call we decide together how Catcher introduces itself and when a caller is handed to your team."),
+    ("What if a caller needs a real person?",
+     "You set the rules. Callers who meet them go to your team; everyone else is screened and booked, so no one hits voicemail."),
+    ("Does it work with our case management software?",
+     "Each intake is sent to your case management software, such as Filevine, CASEpeer, Clio or Lead Docket. Using something else? Bring it up on the call."),
+    ("Is Catcher a referral or lead service?",
+     "No. Catcher answers calls to your own number. We don't sell leads, refer cases or take any share of your fees."),
+    ("What happens to calls you don't take?",
+     "Catcher screens every caller against your case criteria. The ones that don't fit are logged with their details, so your team can see every call."),
+    ("Are calls recorded?",
+     "Yes. Each call is recorded and transcribed so your team gets an accurate intake. Callers are told when a call is recorded, as the law where they are requires."),
+]
+faq_items = "".join(f"<details><summary>{q}</summary><p>{a}</p></details>" for q, a in faqs)
 tip_items = "".join(f"<li>{CHECK}{t}</li>" for t in tips)
 confirmation = f"""<section class="wrap hero">
   <h1 data-show="open"><span data-name>You're in,</span> <em>here's what happens next</em></h1>
@@ -124,6 +150,12 @@ confirmation = f"""<section class="wrap hero">
 <section class="band">
   <div class="wrap">
     <ol class="steps">{step_items}<li><span class="num" aria-hidden="true">✓</span><div class="card tips"><h2>Tips for your call</h2><ul>{tip_items}</ul></div></li></ol>
+  </div>
+</section>
+<section class="faq" aria-labelledby="faq-title">
+  <div class="wrap">
+    <h2 id="faq-title">Questions firms ask</h2>
+    <div class="faq-list">{faq_items}</div>
   </div>
 </section>
 <script>

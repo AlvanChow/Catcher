@@ -40,6 +40,16 @@ h1 em { display: block; font-style: normal; color: var(--teal); }
 .doc h2 { margin: 32px 0 8px; font-size: 20px; letter-spacing: -0.01em; scroll-margin-top: 24px; }
 .doc p, .doc li { color: #2f3546; }
 .doc a { color: var(--teal-ink); }
+.faq { padding: 48px 0 0; }
+.faq h2 { width: min(600px, 100%); margin: 0 auto 16px; font-size: 28px; letter-spacing: -0.02em; }
+.faq-list { width: min(600px, 100%); margin: 0 auto; display: grid; gap: 10px; }
+.faq details { border-radius: 16px; background: var(--paper); border: 1px solid var(--rule); }
+.faq summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 22px; cursor: pointer; list-style: none; font-size: 17px; font-weight: 600; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; flex: none; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--teal-soft); color: var(--teal-ink); font-size: 18px; font-weight: 500; }
+.faq details[open] summary::after { content: "−"; }
+.faq details p { margin: 0; padding: 0 22px 20px; color: var(--muted); }
+.faq summary:focus-visible { outline: 3px solid rgb(10 133 130 / .45); outline-offset: 2px; border-radius: 16px; }
 .ft2 { margin-top: 96px; padding: 56px 0 48px; background: #0c1d1f; color: rgb(255 255 255 / .62); text-align: center; }
 .ft2-brand { display: inline-flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; font-size: 22px; font-weight: 600; }
 .ft2-note { margin: 22px auto 0; max-width: 64ch; font-size: 12px; line-height: 1.6; }
@@ -63,6 +73,12 @@ h1 em { display: block; font-style: normal; color: var(--teal); }
 <section class="band">
   <div class="wrap">
     <ol class="steps"><li data-show="open"><span class="num">1</span><div class="card"><h2>Step 1: Watch your phone</h2><p>We'll call or text you from Catcher to pick a time for your call.</p></div></li><li data-show="open"><span class="num">2</span><div class="card"><h2>Step 2: Check your email</h2><p>We'll send the time and the link for your call. Check spam too.</p></div></li><li data-show="open"><span class="num">3</span><div class="card"><h2>Step 3: Say yes</h2><p>Open the invite and click Yes. Now the call is on your calendar.</p></div></li><li data-show="booked"><span class="num">1</span><div class="card"><h2>Step 1: Check your email</h2><p>We sent you the time and the link for your call. Look in your inbox. Check spam too.</p></div></li><li data-show="booked"><span class="num">2</span><div class="card"><h2>Step 2: Say yes</h2><p>Open the invite and click Yes. Now the call is on your calendar.</p></div></li><li data-show="booked"><span class="num">3</span><div class="card"><h2>Step 3: Reply YES to our text</h2><p>We'll text you before the call. Reply YES so we know you're coming.</p></div></li><li><span class="num" aria-hidden="true">✓</span><div class="card tips"><h2>Tips for your call</h2><ul><li><span class="ck"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg></span>Join 5 minutes early.</li><li><span class="ck"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg></span>Bring whoever runs intake at your firm.</li><li><span class="ck"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg></span>Have your current intake questions close by.</li><li><span class="ck"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg></span>Know which case types you take, and where.</li></ul></div></li></ol>
+  </div>
+</section>
+<section class="faq" aria-labelledby="faq-title">
+  <div class="wrap">
+    <h2 id="faq-title">Questions firms ask</h2>
+    <div class="faq-list"><details><summary>Will callers know they're talking to AI?</summary><p>That's your call. On our setup call we decide together how Catcher introduces itself and when a caller is handed to your team.</p></details><details><summary>What if a caller needs a real person?</summary><p>You set the rules. Callers who meet them go to your team; everyone else is screened and booked, so no one hits voicemail.</p></details><details><summary>Does it work with our case management software?</summary><p>Each intake is sent to your case management software, such as Filevine, CASEpeer, Clio or Lead Docket. Using something else? Bring it up on the call.</p></details><details><summary>Is Catcher a referral or lead service?</summary><p>No. Catcher answers calls to your own number. We don't sell leads, refer cases or take any share of your fees.</p></details><details><summary>What happens to calls you don't take?</summary><p>Catcher screens every caller against your case criteria. The ones that don't fit are logged with their details, so your team can see every call.</p></details><details><summary>Are calls recorded?</summary><p>Yes. Each call is recorded and transcribed so your team gets an accurate intake. Callers are told when a call is recorded, as the law where they are requires.</p></details></div>
   </div>
 </section>
 <script>
