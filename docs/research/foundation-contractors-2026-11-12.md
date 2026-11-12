@@ -14,3 +14,10 @@ Who: foundation repair and leveling, piering, pier and beam, waterproofing and c
 
 Sources: see the chat reply of 12 Nov 2026 (Risacare, Signpost, Hook Agency, Leadtruffle, Customerflows/HBR, Clicksgeek, Eyefly).
 Claims on the page stay qualitative; no third-party statistics are shown as fact.
+
+## Positioning change (owner, 12 Nov 2026)
+
+"Their pain point may be less about emergency than actual qualified leads. And we can focus more on SEO."
+Sandrock now sells qualified, exclusive leads from the contractor's own local SEO, Google Business Profile and
+service pages, screened and booked as inspections. Answering calls is a secondary add-on. No ranking or
+lead-count guarantees appear anywhere on the site.

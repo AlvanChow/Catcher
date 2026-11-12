@@ -46,7 +46,7 @@ h1 em { display: block; font-style: normal; color: #9a6a17; }
 .tips h2 { margin: 0 0 12px; font-size: 20px; }
 .tips ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
 .tips li { display: flex; gap: 12px; align-items: flex-start; }
-.ck { flex: none; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; background: #e8f1e6; color: #3f7a4a; }
+.ck { flex: none; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; background: #f3ead9; color: #2f4858; }
 .doc { width: min(720px, 100%); margin: 0 auto; padding: 8px 0 24px; }
 .doc h1 { font-size: clamp(32px, 4.4vw, 44px); text-align: left; }
 .doc .upd { margin: 10px 0 28px; color: var(--muted); font-size: 14px; }
@@ -59,8 +59,8 @@ h1 em { display: block; font-style: normal; color: #9a6a17; }
 .faq details { border-radius: 16px; background: var(--paper); border: 1px solid var(--rule); }
 .faq summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 24px; cursor: pointer; list-style: none; font-size: 17px; font-weight: 600; }
 .faq summary::-webkit-details-marker { display: none; }
-.faq summary::after { content: ""; flex: none; width: 28px; height: 28px; border-radius: 50%; background: var(--teal-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 6v12M6 12h12' stroke='%23076b69' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E") center/16px no-repeat; }
-.faq details[open] summary::after { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12h12' stroke='%23076b69' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E"); }
+.faq summary::after { content: ""; flex: none; width: 28px; height: 28px; border-radius: 50%; background: var(--teal-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 6v12M6 12h12' stroke='%232f4858' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E") center/16px no-repeat; }
+.faq details[open] summary::after { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12h12' stroke='%232f4858' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E"); }
 .faq details p { margin: 0; padding: 0 24px 20px; color: var(--muted); }
 .faq summary:focus-visible { outline: 3px solid rgb(47 72 88 / .45); outline-offset: 2px; border-radius: 16px; }
 .ft2 { margin-top: 96px; padding: 56px 0 48px; background: #1d2327; color: rgb(255 255 255 / .62); text-align: center; }
@@ -77,7 +77,7 @@ h1 em { display: block; font-style: normal; color: #9a6a17; }
 FOOTER = f"""<footer class="ft2">
   <div class="wrap">
     <a class="ft2-brand" href="/">{MARK.format(s=30, c="#e8edf0", c2="#9fb0ba")}Sandrock</a>
-    <p class="ft2-note">Disclaimer: Sandrock answers and screens calls for foundation contractors. It does not inspect homes, give engineering advice or quote prices.</p>
+    <p class="ft2-note">Disclaimer: Sandrock does not guarantee search rankings or a number of leads. Results depend on your market, reviews and competition. Sandrock does not inspect homes, give engineering advice or quote prices.</p>
     <nav class="ft2-links" aria-label="Legal" style="padding:0"><a href="/terms">Terms of Service</a><a href="/privacy">Privacy Policy</a><a href="/privacy#recording">Call Recording Notice</a><a href="/privacy#accessibility">Accessibility</a></nav>
     <p class="ft2-upd">Last updated: November 11, 2026</p>
     <p class="ft2-copy">© 2026 Sandrock. All rights reserved.</p>
@@ -98,7 +98,7 @@ def page(title, body, robots="index,follow"):
 </head>
 <body>
 <div class="canopy" aria-hidden="true"></div>
-<div class="wrap"><nav aria-label="Main"><a class="brand" href="/">{MARK.format(s=26, c="#2f4858", c2="#4a6878")}Sandrock</a></nav></div>
+<div class="wrap"><nav aria-label="Main"><a class="brand" href="/">{MARK.format(s=26, c="#2f4858", c2="#536576")}Sandrock</a></nav></div>
 <main>
 {body}
 </main>
@@ -124,8 +124,8 @@ booked_steps = [
 tips = [
     "Join 5 minutes early.",
     "Find a quiet place.",
-    "Have your service area and job types close by.",
-    "Know how your estimators book inspections today.",
+    "Know which jobs you want more of.",
+    "Have your service area and lead sources close by.",
 ]
 
 
@@ -139,26 +139,24 @@ def items(rows, kind):
 step_items = items(steps, "open") + items(booked_steps, "booked")
 
 faqs = [
-    ("Will callers know they're talking to AI?",
-     "That's your call. On our setup call we decide together how Sandrock introduces itself and when a caller is handed to your team."),
-    ("Won't it sound robotic to a worried homeowner?",
-     "You'll hear Sandrock on practice calls before anything goes live, and you approve the script and tone. Nothing answers your phone until you're happy with it."),
-    ("Does it replace our office staff?",
-     "No. Sandrock picks up the calls your team can't get to: while crews are on site, nights, weekends and busy weeks after heavy rain. Your office takes it from there."),
-    ("What if a caller needs a real person?",
-     "You set the rules. Callers who meet them go to your team; everyone else is screened and booked, so no one hits voicemail."),
-    ("Can it handle builders and GCs, not just homeowners?",
-     "Yes. You tell us how you want bid requests and pour scheduling calls handled, and Sandrock takes the details and routes them to the right person."),
-    ("Does it quote prices?",
-     "No. Sandrock books the inspection or estimate and passes along what the caller told it. Pricing stays with your estimators."),
+    ("Are the leads shared with other contractors?",
+     "No. Leads come from your own website, Google Business Profile and phone number, so they go to you and no one else."),
+    ("Do you guarantee rankings or a number of leads?",
+     "No, and you should be wary of anyone who does. Results depend on your market, reviews and competition. We show you exactly what moved every month."),
+    ("How long until we see leads?",
+     "SEO builds over months, not days. On the call we look at your market and your current site and tell you honestly what to expect."),
+    ("What makes a lead qualified?",
+     "You decide. We screen for the job types you want, addresses inside your service area and homeowners ready to book an inspection."),
+    ("We already pay for Angi or HomeAdvisor. Do we stop?",
+     "Not on day one. Most contractors keep them running while their own leads grow, then cut back once the numbers show it's safe."),
+    ("Do you work with new-construction foundation crews?",
+     "Yes. For builders and GCs we focus on the searches and pages that bring in bid requests, alongside homeowner repair work if you do both."),
+    ("Who answers the calls?",
+     "Your team does. If you'd like help covering calls while your crews are on site, we can screen and book them for you too."),
     ("Does it work with our CRM?",
-     "Each call summary is sent to your team, and we can send it into the CRM you already use, such as Jobber, ServiceTitan or Housecall Pro. Using something else? Bring it up on the call."),
-    ("What happens to calls outside our service area?",
-     "Sandrock checks the address against your service area. Callers you don't serve are told kindly and logged, so your team can see every call."),
-    ("Are calls recorded?",
-     "Yes. Each call is recorded and transcribed so your team gets the full details. Callers are told when a call is recorded, as the law where they are requires."),
+     "Each lead is sent to your team, and we can send it into the CRM you already use, such as Jobber, ServiceTitan or Housecall Pro. Using something else? Bring it up on the call."),
     ("What does it cost?",
-     "We go over pricing on the call, once we know your call volume and what you want Sandrock to handle."),
+     "We go over pricing on the call, once we know your market, your service area and how many leads you want."),
 ]
 faq_items = "".join(f"<details><summary>{q}</summary><p>{a}</p></details>" for q, a in faqs)
 tip_items = "".join(f"<li>{CHECK}{t}</li>" for t in tips)
@@ -208,7 +206,7 @@ confirmation = f"""<section class="wrap hero ty-hero">
   const c = document.getElementById('confetti'), x = c.getContext('2d'), dpr = devicePixelRatio || 1;
   const size = () => {{ c.width = innerWidth * dpr; c.height = innerHeight * dpr; }};
   size(); addEventListener('resize', size);
-  const colors = ['#2f4858', '#4a6878', '#d9a441', '#c9a46a', '#b4541f', '#8a9a7b', '#e8d3a8'];
+  const colors = ['#2f4858', '#536576', '#d9a441', '#c9a46a', '#b4541f', '#8a9a7b', '#e8d3a8'];
   const N = innerWidth < 600 ? 90 : 160, start = performance.now(), DUR = 6500;
   const p = Array.from({{ length: N }}, (_, i) => ({{
     x: innerWidth * (0.5 + (Math.random() - 0.5) * 0.3), y: innerHeight * 0.32,
@@ -244,7 +242,7 @@ privacy = """<article class="wrap doc">
   <h2>Who processes it</h2>
   <p>Our website is hosted by Vercel, and form submissions are delivered to our team by email through Resend. These providers process the information only to provide their services to us.</p>
   <h2 id="recording">Call Recording Notice</h2>
-  <p>Calls that Sandrock answers for contractors may be recorded and transcribed so the contractor receives accurate job details. Callers are told at the start of the call when it is recorded, as the law where they are requires.</p>
+  <p>Calls that Sandrock screens for contractors may be recorded and transcribed so the contractor receives accurate job details. Callers are told at the start of the call when it is recorded, as the law where they are requires.</p>
   <h2 id="accessibility">Accessibility</h2>
   <p>We want this site to work for everyone, including people who use a keyboard or a screen reader. If something doesn't work for you, email us and we'll fix it.</p>
   <h2>Your choices</h2>
@@ -256,9 +254,9 @@ terms = """<article class="wrap doc">
   <p class="upd">Last updated: November 11, 2026</p>
   <p>These terms apply to your use of this website. By using the site or submitting our form, you agree to them.</p>
   <h2>What this site is</h2>
-  <p>This site describes Sandrock's call answering and booking service for foundation contractors and lets you request a call with us. Submitting the form does not create a contract for services; any service is covered by a separate written agreement.</p>
+  <p>This site describes Sandrock's lead generation and booking service for foundation contractors and lets you request a call with us. Submitting the form does not create a contract for services; any service is covered by a separate written agreement.</p>
   <h2>Not engineering advice</h2>
-  <p>Sandrock answers and screens calls. It does not inspect homes, give engineering advice or quote prices. Nothing on this site is engineering advice.</p>
+  <p>Sandrock does not inspect homes, give engineering advice or quote prices, and does not guarantee search rankings or a number of leads. Nothing on this site is engineering advice.</p>
   <h2>Your information</h2>
   <p>You agree that the information you submit is accurate and that you are authorized to submit it. Our <a href="/privacy">Privacy Policy</a> explains how we use it.</p>
   <h2>Acceptable use</h2>
