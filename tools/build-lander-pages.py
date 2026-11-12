@@ -23,6 +23,8 @@ nav { display: flex; justify-content: center; padding: 22px 0; }
 .hero { padding: 56px 0 40px; text-align: center; }
 h1 { margin: 0; font-size: clamp(36px, 5.4vw, 60px); line-height: 1.04; letter-spacing: -0.035em; font-weight: 700; text-wrap: balance; }
 h1 em { display: block; font-style: normal; color: var(--teal); }
+.sub-lead { margin-top: 18px !important; color: var(--ink) !important; font-size: 21px !important; font-weight: 600; }
+.sub-lead + .sub { margin-top: 8px; }
 .sub { margin: 20px auto 0; max-width: 44ch; color: var(--muted); font-size: 18px; }
 .band { padding: 56px 0 24px; }
 .steps { position: relative; width: min(600px, 100%); margin: 0 auto; padding: 0; list-style: none; display: grid; gap: 16px; }
@@ -143,8 +145,9 @@ faqs = [
 faq_items = "".join(f"<details><summary>{q}</summary><p>{a}</p></details>" for q, a in faqs)
 tip_items = "".join(f"<li>{CHECK}{t}</li>" for t in tips)
 confirmation = f"""<section class="wrap hero">
-  <h1 data-show="open"><span data-name>You're in,</span> <em>here's what happens next</em></h1>
-  <h1 data-show="booked">Your call is booked, <em>but not confirmed yet</em></h1>
+  <h1>Thank you<span data-name></span> <em>for choosing Catcher</em></h1>
+  <p class="sub sub-lead" data-show="booked">Your call is booked, but not confirmed yet</p>
+  <p class="sub sub-lead" data-show="open">We got your answers, here's what happens next</p>
   <p class="sub">Do these 3 things to lock in your call</p>
 </section>
 <section class="band">
@@ -162,7 +165,7 @@ confirmation = f"""<section class="wrap hero">
 let booked = false;
 try {{ booked = sessionStorage.getItem('catcher_booked') === '1'; }} catch (_) {{}}
 document.querySelectorAll('[data-show]').forEach(el => {{ if (el.dataset.show !== (booked ? 'booked' : 'open')) el.remove(); }});
-try {{ const n = sessionStorage.getItem('catcher_name'); const el = document.querySelector('[data-name]'); if (n && el) el.textContent = "You're in, " + n.replace(/[<>]/g, '') + ","; }} catch (_) {{}}
+try {{ const n = sessionStorage.getItem('catcher_name'); const el = document.querySelector('[data-name]'); if (n && el) el.textContent = ", " + n.replace(/[<>]/g, ''); }} catch (_) {{}}
 </script>"""
 
 privacy = """<article class="wrap doc">
@@ -206,7 +209,7 @@ terms = """<article class="wrap doc">
 </article>"""
 
 out = {
-    "confirmation/index.html": page("You're in · Catcher", confirmation, robots="noindex"),
+    "confirmation/index.html": page("Thank you · Catcher", confirmation, robots="noindex"),
     "privacy/index.html": page("Privacy Policy · Catcher", privacy),
     "terms/index.html": page("Terms of Service · Catcher", terms),
 }

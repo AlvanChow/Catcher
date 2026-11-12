@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<title>You're in · Catcher</title>
+<title>Thank you · Catcher</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2032%2032%27%3E%3Crect%20width%3D%2732%27%20height%3D%2732%27%20rx%3D%278%27%20fill%3D%27%230a8582%27/%3E%3Cpath%20transform%3D%27rotate(20%2016%2016)%27%20d%3D%27M10%206V26M16%206V26M22%206V26M6%2010H26M6%2016H26M6%2022H26%27%20stroke%3D%27white%27%20stroke-width%3D%272.6%27%20stroke-linecap%3D%27round%27/%3E%3C/svg%3E">
 <style>
 :root { --ink:#1b1f2e; --muted:#596078; --rule:#cde0e4; --paper:#fff; --ground:#f7fbfc; --teal:#0a8582; --teal-soft:#e0f7f7; --teal-ink:#076b69;
@@ -20,6 +20,8 @@ nav { display: flex; justify-content: center; padding: 22px 0; }
 .hero { padding: 56px 0 40px; text-align: center; }
 h1 { margin: 0; font-size: clamp(36px, 5.4vw, 60px); line-height: 1.04; letter-spacing: -0.035em; font-weight: 700; text-wrap: balance; }
 h1 em { display: block; font-style: normal; color: var(--teal); }
+.sub-lead { margin-top: 18px !important; color: var(--ink) !important; font-size: 21px !important; font-weight: 600; }
+.sub-lead + .sub { margin-top: 8px; }
 .sub { margin: 20px auto 0; max-width: 44ch; color: var(--muted); font-size: 18px; }
 .band { padding: 56px 0 24px; }
 .steps { position: relative; width: min(600px, 100%); margin: 0 auto; padding: 0; list-style: none; display: grid; gap: 16px; }
@@ -66,8 +68,9 @@ h1 em { display: block; font-style: normal; color: var(--teal); }
 <div class="wrap"><nav aria-label="Main"><a class="brand" href="/"><svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="#0a8582" stroke-width="2.6" stroke-linecap="round"><path transform="rotate(20 16 16)" d="M10 6V26M16 6V26M22 6V26M6 10H26M6 16H26M6 22H26"/></svg>Catcher</a></nav></div>
 <main>
 <section class="wrap hero">
-  <h1 data-show="open"><span data-name>You're in,</span> <em>here's what happens next</em></h1>
-  <h1 data-show="booked">Your call is booked, <em>but not confirmed yet</em></h1>
+  <h1>Thank you<span data-name></span> <em>for choosing Catcher</em></h1>
+  <p class="sub sub-lead" data-show="booked">Your call is booked, but not confirmed yet</p>
+  <p class="sub sub-lead" data-show="open">We got your answers, here's what happens next</p>
   <p class="sub">Do these 3 things to lock in your call</p>
 </section>
 <section class="band">
@@ -85,7 +88,7 @@ h1 em { display: block; font-style: normal; color: var(--teal); }
 let booked = false;
 try { booked = sessionStorage.getItem('catcher_booked') === '1'; } catch (_) {}
 document.querySelectorAll('[data-show]').forEach(el => { if (el.dataset.show !== (booked ? 'booked' : 'open')) el.remove(); });
-try { const n = sessionStorage.getItem('catcher_name'); const el = document.querySelector('[data-name]'); if (n && el) el.textContent = "You're in, " + n.replace(/[<>]/g, '') + ","; } catch (_) {}
+try { const n = sessionStorage.getItem('catcher_name'); const el = document.querySelector('[data-name]'); if (n && el) el.textContent = ", " + n.replace(/[<>]/g, ''); } catch (_) {}
 </script>
 </main>
 <footer class="ft2">
