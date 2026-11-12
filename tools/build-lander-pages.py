@@ -131,8 +131,16 @@ step_items = items(steps, "open") + items(booked_steps, "booked")
 faqs = [
     ("Will callers know they're talking to AI?",
      "That's your call. On our setup call we decide together how Catcher introduces itself and when a caller is handed to your team."),
+    ("Won't it sound robotic to someone who was just in an accident?",
+     "You'll hear Catcher on real practice calls before anything goes live, and you approve the script and tone. Nothing answers your phone until you're happy with it."),
+    ("Does it replace our intake team?",
+     "No. Catcher picks up the calls your team can't get to: nights, weekends and overflow. Your team gets the full intake and takes it from there."),
     ("What if a caller needs a real person?",
      "You set the rules. Callers who meet them go to your team; everyone else is screened and booked, so no one hits voicemail."),
+    ("What if it gets a detail wrong?",
+     "Every call is recorded and transcribed, so your team can check any intake against what the caller actually said."),
+    ("Who decides which cases we take?",
+     "You do. Catcher screens callers against the criteria you set, and your attorneys make every decision about taking a case."),
     ("Does it work with our case management software?",
      "Each intake is sent to your case management software, such as Filevine, CASEpeer, Clio or Lead Docket. Using something else? Bring it up on the call."),
     ("Is Catcher a referral or lead service?",
@@ -141,6 +149,8 @@ faqs = [
      "Catcher screens every caller against your case criteria. The ones that don't fit are logged with their details, so your team can see every call."),
     ("Are calls recorded?",
      "Yes. Each call is recorded and transcribed so your team gets an accurate intake. Callers are told when a call is recorded, as the law where they are requires."),
+    ("What does it cost?",
+     "We go over pricing on the call, once we know your call volume and what you want Catcher to handle."),
 ]
 faq_items = "".join(f"<details><summary>{q}</summary><p>{a}</p></details>" for q, a in faqs)
 tip_items = "".join(f"<li>{CHECK}{t}</li>" for t in tips)
