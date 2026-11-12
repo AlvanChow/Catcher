@@ -141,6 +141,8 @@ step_items = items(steps, "open") + items(booked_steps, "booked")
 faqs = [
     ("What do I get in the free lead audit?",
      "We look up how many homeowners search for foundation work in your service area and show you which companies are getting those leads today. It is yours to keep whether you work with us or not."),
+    ("How do I get the $100?",
+     "Show up to your 15-minute audit call and we send you $100 for your time. One payment per company. We confirm how you want to be paid on the call."),
     ("Are the leads shared with other contractors?",
      "No. Leads come from your own website and Google Business Profile and phone number so they go to you and no one else."),
     ("Do you guarantee rankings or a number of leads?",
