@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="index,follow">
+<title>Privacy Policy · Catcher</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2032%2032%27%3E%3Crect%20width%3D%2732%27%20height%3D%2732%27%20rx%3D%278%27%20fill%3D%27%230a8582%27/%3E%3Cpath%20transform%3D%27rotate(20%2016%2016)%27%20d%3D%27M10%206V26M16%206V26M22%206V26M6%2010H26M6%2016H26M6%2022H26%27%20stroke%3D%27white%27%20stroke-width%3D%272.6%27%20stroke-linecap%3D%27round%27/%3E%3C/svg%3E">
+<style>
+:root { --ink:#1b1f2e; --muted:#596078; --rule:#cde0e4; --paper:#fff; --ground:#f7fbfc; --teal:#0a8582; --teal-soft:#e0f7f7; --teal-ink:#076b69;
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Helvetica,Arial,sans-serif; }
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; position: relative; min-height: 100vh; display: flex; flex-direction: column; background: var(--ground); color: var(--ink); font: 16px/1.5 var(--font); }
+main { flex: 1; }
+.canopy { position: absolute; inset: 0 0 auto 0; height: 560px; z-index: -1; background: linear-gradient(105deg, #ecfbfb, #bdeff0 38%, #c3e6fb 70%, #f1f8ff); -webkit-mask-image: linear-gradient(#000 35%, transparent); mask-image: linear-gradient(#000 35%, transparent); }
+.wrap { width: min(1120px, 100% - 40px); margin: 0 auto; }
+nav { display: flex; justify-content: center; padding: 22px 0; }
+.brand { display: inline-flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; font-weight: 600; font-size: 18px; }
+.hero { padding: 56px 0 40px; text-align: center; }
+h1 { margin: 0; font-size: clamp(36px, 5.4vw, 60px); line-height: 1.04; letter-spacing: -0.035em; font-weight: 700; text-wrap: balance; }
+h1 em { display: block; font-style: normal; color: var(--teal); }
+.ty-hero { position: relative; }
+.ty-icon { position: absolute; left: -80px; top: 10px; width: 300px; height: 275px; pointer-events: none; }
+.ty-icon svg { width: 100%; height: 100%; }
+@media (max-width: 1180px) { .ty-icon { width: 200px; height: 183px; left: 0; top: 40px; } }
+@media (max-width: 960px) { .ty-icon { position: static; width: 170px; height: 156px; margin: 0 auto 10px; } }
+@keyframes ty-pop { from { transform: scale(.6); opacity: 0; } to { transform: none; opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .ty-icon { animation: none; } }
+#confetti { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 40; }
+.sub-lead { margin-top: 18px !important; color: var(--ink) !important; font-size: 21px !important; font-weight: 600; }
+.sub-lead + .sub { margin-top: 8px; }
+.sub { margin: 20px auto 0; max-width: 44ch; color: var(--muted); font-size: 18px; }
+.band { padding: 56px 0 24px; }
+.steps { position: relative; width: min(600px, 100%); margin: 0 auto; padding: 0; list-style: none; display: grid; gap: 16px; }
+.steps > li:not(:last-child)::after { content: ""; position: absolute; left: 17px; top: 64px; bottom: -14px; width: 2px; background: var(--rule); }
+.steps > li { position: relative; display: grid; grid-template-columns: 36px 1fr; gap: 18px; align-items: start; }
+.num { position: relative; z-index: 1; width: 36px; height: 36px; margin-top: 20px; border-radius: 50%; display: grid; place-items: center; background: var(--teal); color: #fff; font-weight: 700; font-size: 15px; }
+.card { padding: 22px 24px; border-radius: 18px; background: var(--paper); border: 1px solid var(--rule); box-shadow: 0 10px 28px -22px rgb(10 40 50 / .45); }
+.card h2 { margin: 0; font-size: 20px; font-weight: 650; letter-spacing: -0.01em; }
+.card p { margin: 6px 0 0; color: var(--muted); }
+.tips { margin-top: 0; }
+.tips h2 { margin: 0 0 12px; font-size: 20px; }
+.tips ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+.tips li { display: flex; gap: 12px; align-items: flex-start; }
+.ck { flex: none; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; background: #e6f6ee; color: #12805c; }
+.doc { width: min(720px, 100%); margin: 0 auto; padding: 8px 0 24px; }
+.doc h1 { font-size: clamp(32px, 4.4vw, 44px); text-align: left; }
+.doc .upd { margin: 10px 0 28px; color: var(--muted); font-size: 14px; }
+.doc h2 { margin: 32px 0 8px; font-size: 20px; letter-spacing: -0.01em; scroll-margin-top: 24px; }
+.doc p, .doc li { color: #2f3546; }
+.doc a { color: var(--teal-ink); }
+.faq { padding: 48px 0 0; }
+.faq h2 { box-sizing: border-box; width: min(600px, 100%); padding-left: 54px; margin: 0 auto 16px; font-size: 28px; letter-spacing: -0.02em; }
+.faq-list { box-sizing: border-box; width: min(600px, 100%); padding-left: 54px; margin: 0 auto; display: grid; gap: 10px; }
+.faq details { border-radius: 16px; background: var(--paper); border: 1px solid var(--rule); }
+.faq summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 24px; cursor: pointer; list-style: none; font-size: 17px; font-weight: 600; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: ""; flex: none; width: 28px; height: 28px; border-radius: 50%; background: var(--teal-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 6v12M6 12h12' stroke='%23076b69' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E") center/16px no-repeat; }
+.faq details[open] summary::after { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12h12' stroke='%23076b69' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E"); }
+.faq details p { margin: 0; padding: 0 24px 20px; color: var(--muted); }
+.faq summary:focus-visible { outline: 3px solid rgb(10 133 130 / .45); outline-offset: 2px; border-radius: 16px; }
+.ft2 { margin-top: 96px; padding: 56px 0 48px; background: #0c1d1f; color: rgb(255 255 255 / .62); text-align: center; }
+.ft2-brand { display: inline-flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; font-size: 22px; font-weight: 600; }
+.ft2-note { margin: 22px auto 0; max-width: 64ch; font-size: 12px; line-height: 1.6; }
+.ft2-links { margin-top: 18px; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 22px; }
+.ft2-links a { color: rgb(255 255 255 / .78); font-size: 12px; text-decoration: none; }
+.ft2-links a:hover { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+.ft2-upd { margin: 18px 0 0; font-size: 12px; }
+.ft2-copy { margin: 8px 0 0; font-size: 12px; font-weight: 700; color: rgb(255 255 255 / .85); }
+@media (max-width: 520px) { .hero { padding: 24px 0 8px; } .band { padding-top: 28px; } .card { padding: 18px; } .steps > li { gap: 12px; } .num { margin-top: 16px; } .steps > li:not(:last-child)::after { top: 60px; } .faq h2, .faq-list { padding-left: 48px; } .faq { padding-top: 40px; } .faq h2 { font-size: 24px; } .faq summary { padding: 16px 18px; font-size: 16px; } .faq details p { padding: 0 18px 18px; } .ft2 { margin-top: 56px; padding: 40px 0 36px; } .ft2-links { gap: 0 4px; } .ft2-links a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 10px; } }
+</style>
+</head>
+<body>
+<div class="canopy" aria-hidden="true"></div>
+<div class="wrap"><nav aria-label="Main"><a class="brand" href="/"><svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="#0a8582" stroke-width="2.6" stroke-linecap="round"><path transform="rotate(20 16 16)" d="M10 6V26M16 6V26M22 6V26M6 10H26M6 16H26M6 22H26"/></svg>Catcher</a></nav></div>
+<main>
+<article class="wrap doc">
+  <h1>Privacy Policy</h1>
+  <p class="upd">Last updated: November 11, 2026</p>
+  <p>This policy explains what Catcher collects through this website and how we use it.</p>
+  <h2>What we collect</h2>
+  <p>When you fill out our form, we collect your name, phone number, email and your answers to our questions. We also record the page you came from and any campaign tags in the link (such as utm_source).</p>
+  <h2>How we use it</h2>
+  <p>We use it to contact you about a call with Catcher, to prepare for that call and to improve our marketing. We do not sell your information.</p>
+  <h2>Calls and texts</h2>
+  <p>If you agreed to it on our form, we may call or text the number you gave us about your call, including with automated messages. Msg &amp; data rates may apply. Reply STOP to opt out at any time.</p>
+  <h2>Who processes it</h2>
+  <p>Our website is hosted by Vercel, and form submissions are delivered to our team by email through Resend. These providers process the information only to provide their services to us.</p>
+  <h2 id="recording">Call Recording Notice</h2>
+  <p>Calls that Catcher answers for contractors may be recorded and transcribed so the contractor receives accurate job details. Callers are told at the start of the call when it is recorded, as the law where they are requires.</p>
+  <h2 id="accessibility">Accessibility</h2>
+  <p>We want this site to work for everyone, including people who use a keyboard or a screen reader. If something doesn't work for you, email us and we'll fix it.</p>
+  <h2>Your choices</h2>
+  <p>You can ask us to see, correct or delete the information you gave us, or to stop contacting you, by emailing <a href="mailto:hello@catchersolutions.com">hello@catchersolutions.com</a>.</p>
+</article>
+</main>
+<footer class="ft2">
+  <div class="wrap">
+    <a class="ft2-brand" href="/"><svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="#4fd0cc" stroke-width="2.6" stroke-linecap="round"><path transform="rotate(20 16 16)" d="M10 6V26M16 6V26M22 6V26M6 10H26M6 16H26M6 22H26"/></svg>Catcher</a>
+    <p class="ft2-note">Disclaimer: Catcher answers and screens calls for foundation contractors. It does not inspect homes, give engineering advice or quote prices.</p>
+    <nav class="ft2-links" aria-label="Legal" style="padding:0"><a href="/terms">Terms of Service</a><a href="/privacy">Privacy Policy</a><a href="/privacy#recording">Call Recording Notice</a><a href="/privacy#accessibility">Accessibility</a></nav>
+    <p class="ft2-upd">Last updated: November 11, 2026</p>
+    <p class="ft2-copy">© 2026 Catcher. All rights reserved.</p>
+  </div>
+</footer>
+</body>
+</html>

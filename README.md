@@ -4,7 +4,8 @@ Monorepo for Catcher: 24/7 call answering and intake for personal-injury firms.
 
 ```
 apps/
-  lander/      catchersolutions.com — static lander, apply form, confirmation page, /api/lead
+  lander/             catchersolutions.com — PI firms: lander, apply form, confirmation page, /api/lead
+  lander-foundation/  same lander for foundation contractors (not deployed yet)
 packages/      shared code (empty for now)
 tools/         repo scripts
 ```
