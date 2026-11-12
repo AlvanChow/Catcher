@@ -24,9 +24,6 @@ nav { display: flex; justify-content: center; padding: 22px 0; }
 h1 { margin: 0; font-size: clamp(36px, 5.4vw, 60px); line-height: 1.04; letter-spacing: -0.035em; font-weight: 700; text-wrap: balance; }
 h1 em { display: block; font-style: normal; color: var(--teal); }
 .ty-hero { position: relative; }
-.ty-net { position: absolute; z-index: -1; pointer-events: none; top: 10px; left: -40px; width: 300px; height: 300px; opacity: .14; }
-.ty-net svg { width: 100%; height: 100%; }
-@media (max-width: 900px) { .ty-net { width: 180px; height: 180px; left: -60px; top: -10px; opacity: .1; } }
 #confetti { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 40; }
 .sub-lead { margin-top: 18px !important; color: var(--ink) !important; font-size: 21px !important; font-weight: 600; }
 .sub-lead + .sub { margin-top: 8px; }
@@ -162,8 +159,6 @@ faqs = [
 faq_items = "".join(f"<details><summary>{q}</summary><p>{a}</p></details>" for q, a in faqs)
 tip_items = "".join(f"<li>{CHECK}{t}</li>" for t in tips)
 confirmation = f"""<section class="wrap hero ty-hero">
-  <div class="ty-net" aria-hidden="true"><svg viewBox="0 0 200 200" fill="none" stroke="#0a8582" stroke-width="3" stroke-linecap="round"><g transform="rotate(20 100 100)"><path d="M40 20V180M70 20V180M100 20V180M130 20V180M160 20V180M20 40H180M20 70H180M20 100H180M20 130H180M20 160H180"/></g></svg></div>
-
   <h1>Thank you<span data-name></span> <em>for choosing Catcher</em></h1>
   <p class="sub sub-lead" data-show="booked">Your call is booked, but not confirmed yet</p>
   <p class="sub sub-lead" data-show="open">We got your answers, here's what happens next</p>
