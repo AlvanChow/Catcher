@@ -179,9 +179,9 @@ confirmation = f"""<section class="wrap hero ty-hero">
 </g>
 <path d="M18 15 Q18 22 25 22 Q18 22 18 29 Q18 22 11 22 Q18 22 18 15 Z" fill="#ffd166"/><path d="M226 114 Q226 120 232 120 Q226 120 226 126 Q226 120 220 120 Q226 120 226 114 Z" fill="#ffd166"/><path d="M206 19.5 Q206 24 210.5 24 Q206 24 206 28.5 Q206 24 201.5 24 Q206 24 206 19.5 Z" fill="#ffd166"/>
 </svg></div>
-  <h1>Thank you<span data-name></span> <em>for choosing Catcher</em></h1>
-  <p class="sub sub-lead" data-show="booked">Your call is booked, but not confirmed yet</p>
-  <p class="sub sub-lead" data-show="open">We got your answers, here's what happens next</p>
+  <h1 data-show="booked">Your call is booked <em>but not confirmed yet</em></h1>
+  <h1 data-show="open">We got your answers <em>here's what happens next</em></h1>
+  <p class="sub sub-lead">Thank you<span data-name></span> for choosing Catcher</p>
   <p class="sub">Do these 3 steps to lock in your call</p>
 </section>
 <section class="band">
