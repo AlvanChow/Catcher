@@ -105,21 +105,21 @@ def page(title, body, robots="index,follow"):
 CHECK = '<span class="ck"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg></span>'
 
 steps = [
-    ("We'll be in touch", "Someone from Catcher will call or text you to find a time that works."),
-    ("Keep an eye on your inbox", "Your invite with the time and call link will land there. If you don't see it, peek in spam."),
-    ("Add it to your calendar", "Open the invite and tap Yes so the call is saved on your calendar."),
+    ("Step 1: Watch your phone", "We'll call or text you to set up your call."),
+    ("Step 2: Check your email", "We'll send you the time and the link for your call. Check spam too."),
+    ("Step 3: Say yes", "Open the invite and click Yes. Now the call is on your calendar."),
 ]
 # Shown instead when the visitor booked a time in Calendly on the last form step.
 booked_steps = [
-    ("Keep an eye on your inbox", "Your invite with the time and call link is on its way. If you don't see it in a few minutes, peek in spam."),
-    ("Add it to your calendar", "Open the invite and tap Yes so the call is saved on your calendar."),
-    ("Watch for a quick text", "We'll send a friendly reminder before the call. A quick YES lets us know you're still good to go."),
+    ("Step 1: Check your email", "We sent you the time and the link for your call. Look in your inbox. Check spam too."),
+    ("Step 2: Say yes", "Open the invite and click Yes. Now the call is on your calendar."),
+    ("Step 3: Reply YES to our text", "We'll text you before your call. Reply YES so we know you're coming."),
 ]
 tips = [
-    "Join a few minutes early if you can.",
-    "Bring whoever runs intake, if they're free.",
-    "Have your current intake questions handy.",
-    "Think about which case types you take, and where.",
+    "Join 5 minutes early.",
+    "Find a quiet place.",
+    "Have your intake questions close by.",
+    "Know which case types you take.",
 ]
 
 
@@ -162,11 +162,11 @@ confirmation = f"""<section class="wrap hero ty-hero">
   <h1>Thank you<span data-name></span> <em>for choosing Catcher</em></h1>
   <p class="sub sub-lead" data-show="booked">Your call is booked, but not confirmed yet</p>
   <p class="sub sub-lead" data-show="open">We got your answers, here's what happens next</p>
-  <p class="sub">A few quick things before we talk</p>
+  <p class="sub">Do these 3 steps to lock in your call</p>
 </section>
 <section class="band">
   <div class="wrap">
-    <ol class="steps">{step_items}<li><span class="num" aria-hidden="true">✓</span><div class="card tips"><h2>To get the most out of the call</h2><ul>{tip_items}</ul></div></li></ol>
+    <ol class="steps">{step_items}<li><span class="num" aria-hidden="true">✓</span><div class="card tips"><h2>Tips for your call</h2><ul>{tip_items}</ul></div></li></ol>
   </div>
 </section>
 <section class="faq" aria-labelledby="faq-title">
