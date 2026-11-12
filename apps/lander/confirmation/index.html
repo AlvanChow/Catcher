@@ -24,6 +24,15 @@ h1 em { display: block; font-style: normal; color: var(--teal); }
 .ty-net { position: absolute; z-index: -1; pointer-events: none; top: 10px; right: -40px; width: 300px; height: 300px; opacity: .14; }
 .ty-net svg { width: 100%; height: 100%; }
 @media (max-width: 900px) { .ty-net { width: 180px; height: 180px; right: -60px; top: -10px; opacity: .1; } }
+.ty-mitt { display: flex; justify-content: center; margin: 0 auto 10px; }
+.ty-mitt svg { overflow: visible; }
+.ty-ball { animation: ty-ball 1.1s cubic-bezier(.3,.7,.4,1) both; }
+.ty-glove { transform-origin: 76px 130px; animation: ty-catch .5s ease-out 1s both; }
+.ty-zoom { opacity: 0; animation: ty-zoom .6s ease-out .95s both; }
+@keyframes ty-ball { 0% { transform: translate(70px, -80px) rotate(-120deg); opacity: 0; } 20% { opacity: 1; } 100% { transform: none; } }
+@keyframes ty-catch { 0% { transform: none; } 40% { transform: translateY(5px) rotate(-3deg); } 100% { transform: none; } }
+@keyframes ty-zoom { from { opacity: .9; } to { opacity: .7; } }
+@media (prefers-reduced-motion: reduce) { .ty-ball, .ty-glove, .ty-zoom { animation: none; opacity: 1; } }
 #confetti { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 40; }
 .sub-lead { margin-top: 18px !important; color: var(--ink) !important; font-size: 21px !important; font-weight: 600; }
 .sub-lead + .sub { margin-top: 8px; }
@@ -75,6 +84,20 @@ h1 em { display: block; font-style: normal; color: var(--teal); }
 <section class="wrap hero ty-hero">
   <div class="ty-net" aria-hidden="true"><svg viewBox="0 0 200 200" fill="none" stroke="#0a8582" stroke-width="3" stroke-linecap="round"><g transform="rotate(20 100 100)"><path d="M40 20V180M70 20V180M100 20V180M130 20V180M160 20V180M20 40H180M20 70H180M20 100H180M20 130H180M20 160H180"/></g></svg></div>
 
+  <div class="ty-mitt" aria-hidden="true"><svg viewBox="0 0 160 150" width="130" height="122">
+    <defs><linearGradient id="mg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2cc7bd"/><stop offset="1" stop-color="#0a8582"/></linearGradient></defs>
+    <g class="ty-glove">
+      <g fill="url(#mg)"><rect x="40" y="30" width="20" height="56" rx="10"/><rect x="58" y="22" width="20" height="62" rx="10"/><rect x="76" y="24" width="20" height="60" rx="10"/><rect x="94" y="34" width="18" height="52" rx="9"/><rect x="16" y="64" width="20" height="46" rx="10" transform="rotate(-38 26 87)"/><path d="M34 70 Q34 132 76 134 Q118 132 114 70 Z"/></g>
+      <rect x="50" y="126" width="52" height="16" rx="8" fill="#087572"/>
+      <circle cx="58" cy="104" r="3.2" fill="#0b3b3a"/><circle cx="76" cy="108" r="3.2" fill="#0b3b3a"/>
+      <path d="M60 114 Q67 120 74 116" stroke="#0b3b3a" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+      <circle cx="51" cy="112" r="4.2" fill="#ffc2cf"/><circle cx="85" cy="116" r="4.2" fill="#ffc2cf"/>
+    </g>
+    <g class="ty-ball"><circle cx="80" cy="70" r="19" fill="#fff" stroke="#cde0e4" stroke-width="2"/>
+      <path d="M67 57 Q75 70 67 83" stroke="#e5484d" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-dasharray="3 3"/>
+      <path d="M93 57 Q85 70 93 83" stroke="#e5484d" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-dasharray="3 3"/></g>
+    <g class="ty-zoom" stroke="#4fd0cc" stroke-width="4" stroke-linecap="round"><path d="M112 14 l12 -8"/><path d="M122 26 l14 -4"/><path d="M104 8 l6 -10"/></g>
+  </svg></div>
   <h1>Thank you<span data-name></span> <em>for choosing Catcher</em></h1>
   <p class="sub sub-lead" data-show="booked">Your call is booked, but not confirmed yet</p>
   <p class="sub sub-lead" data-show="open">We got your answers, here's what happens next</p>
