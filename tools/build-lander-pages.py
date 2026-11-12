@@ -165,7 +165,7 @@ confirmation = f"""<section class="wrap hero">
 let booked = false;
 try {{ booked = sessionStorage.getItem('catcher_booked') === '1'; }} catch (_) {{}}
 document.querySelectorAll('[data-show]').forEach(el => {{ if (el.dataset.show !== (booked ? 'booked' : 'open')) el.remove(); }});
-try {{ const n = sessionStorage.getItem('catcher_name'); const el = document.querySelector('[data-name]'); if (n && el) el.textContent = ", " + n.replace(/[<>]/g, ''); }} catch (_) {{}}
+try {{ const n = sessionStorage.getItem('catcher_name'); const el = document.querySelector('[data-name]'); if (n && el) el.textContent = " " + n.replace(/[<>]/g, ''); }} catch (_) {{}}
 </script>"""
 
 privacy = """<article class="wrap doc">
