@@ -23,6 +23,14 @@ nav { display: flex; justify-content: center; padding: 22px 0; }
 .hero { padding: 56px 0 40px; text-align: center; }
 h1 { margin: 0; font-size: clamp(36px, 5.4vw, 60px); line-height: 1.04; letter-spacing: -0.035em; font-weight: 700; text-wrap: balance; }
 h1 em { display: block; font-style: normal; color: var(--teal); }
+.ty-art { display: flex; justify-content: center; margin: 0 auto 18px; }
+.ty-art svg { width: 200px; height: auto; overflow: visible; }
+.ty-phone { transform-origin: 110px 62px; animation: ty-drop .9s cubic-bezier(.2,.9,.3,1.25) both; }
+.ty-waves { animation: ty-pulse 1.8s ease-in-out .9s infinite; }
+@keyframes ty-drop { from { transform: translateY(-46px) rotate(-12deg); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes ty-pulse { 0%, 100% { opacity: .35; } 50% { opacity: 1; } }
+#confetti { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 40; }
+@media (prefers-reduced-motion: reduce) { .ty-phone, .ty-waves { animation: none; } }
 .sub-lead { margin-top: 18px !important; color: var(--ink) !important; font-size: 21px !important; font-weight: 600; }
 .sub-lead + .sub { margin-top: 8px; }
 .sub { margin: 20px auto 0; max-width: 44ch; color: var(--muted); font-size: 18px; }
@@ -155,6 +163,19 @@ faqs = [
 faq_items = "".join(f"<details><summary>{q}</summary><p>{a}</p></details>" for q, a in faqs)
 tip_items = "".join(f"<li>{CHECK}{t}</li>" for t in tips)
 confirmation = f"""<section class="wrap hero">
+  <div class="ty-art" aria-hidden="true"><svg viewBox="0 0 220 150" width="220" height="150" fill="none">
+    <defs><linearGradient id="tyg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#14bfb5"/><stop offset="1" stop-color="#087572"/></linearGradient></defs>
+    <path d="M30 70 Q110 150 190 70" stroke="#0a8582" stroke-opacity=".25" stroke-width="2"/>
+    <g stroke="#0a8582" stroke-opacity=".35" stroke-width="2" stroke-linecap="round">
+      <path d="M48 86 Q110 136 172 86"/><path d="M70 104 Q110 128 150 104"/>
+      <path d="M60 78 L72 118"/><path d="M85 88 L92 128"/><path d="M110 92 L110 132"/><path d="M135 88 L128 128"/><path d="M160 78 L148 118"/>
+    </g>
+    <path d="M30 70 Q110 150 190 70" stroke="url(#tyg)" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="30" cy="70" r="6" fill="#0a8582"/><circle cx="190" cy="70" r="6" fill="#0a8582"/>
+    <g class="ty-phone"><rect x="88" y="26" width="44" height="72" rx="10" fill="url(#tyg)"/><rect x="94" y="34" width="32" height="50" rx="4" fill="#fff" fill-opacity=".92"/>
+      <path d="M103 59 h2 M108 54 v10 M113 50 v18 M118 55 v8" stroke="#0a8582" stroke-width="2.4" stroke-linecap="round"/><circle cx="110" cy="91" r="2.6" fill="#fff"/></g>
+    <g class="ty-waves" stroke="#14bfb5" stroke-width="3" stroke-linecap="round"><path d="M146 40 q8 10 0 20"/><path d="M156 32 q14 18 0 36"/><path d="M74 40 q-8 10 0 20"/><path d="M64 32 q-14 18 0 36"/></g>
+  </svg></div>
   <h1>Thank you<span data-name></span> <em>for choosing Catcher</em></h1>
   <p class="sub sub-lead" data-show="booked">Your call is booked, but not confirmed yet</p>
   <p class="sub sub-lead" data-show="open">We got your answers, here's what happens next</p>
@@ -171,6 +192,29 @@ confirmation = f"""<section class="wrap hero">
     <div class="faq-list">{faq_items}</div>
   </div>
 </section>
+<canvas id="confetti" aria-hidden="true"></canvas>
+<script>
+(() => {{
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const c = document.getElementById('confetti'), x = c.getContext('2d'), dpr = devicePixelRatio || 1;
+  const size = () => {{ c.width = innerWidth * dpr; c.height = innerHeight * dpr; }};
+  size(); addEventListener('resize', size);
+  const colors = ['#0a8582', '#14bfb5', '#4fd0cc', '#2f6fdb', '#f5b83d', '#12805c', '#7357d6'];
+  const N = innerWidth < 600 ? 90 : 160, start = performance.now();
+  const p = Array.from({{ length: N }}, (_, i) => ({{
+    x: innerWidth * (0.5 + (Math.random() - 0.5) * 0.3), y: innerHeight * 0.32,
+    vx: (Math.random() - 0.5) * 14, vy: -Math.random() * 15 - 5, r: Math.random() * Math.PI,
+    vr: (Math.random() - 0.5) * 0.3, w: 6 + Math.random() * 6, h: 8 + Math.random() * 8, c: colors[i % colors.length]
+  }}));
+  (function tick(t) {{
+    const age = t - start; x.setTransform(dpr, 0, 0, dpr, 0, 0); x.clearRect(0, 0, innerWidth, innerHeight);
+    x.globalAlpha = Math.max(0, 1 - Math.max(0, age - 2600) / 900);
+    for (const q of p) {{ q.vy += 0.35; q.vx *= 0.99; q.x += q.vx; q.y += q.vy; q.r += q.vr;
+      x.save(); x.translate(q.x, q.y); x.rotate(q.r); x.fillStyle = q.c; x.fillRect(-q.w / 2, -q.h / 2, q.w, q.h * Math.abs(Math.cos(q.r * 2)) + 2); x.restore(); }}
+    if (age < 3500) requestAnimationFrame(tick); else c.remove();
+  }})(start);
+}})();
+</script>
 <script>
 let booked = false;
 try {{ booked = sessionStorage.getItem('catcher_booked') === '1'; }} catch (_) {{}}
