@@ -77,9 +77,9 @@ h1 em { display: block; font-style: normal; color: #b84c22; }
 FOOTER = f"""<footer class="ft2">
   <div class="wrap">
     <a class="ft2-brand" href="/">{MARK.format(s=30, c="#fbe9dc", c2="#d9b48c")}Sandrock</a>
-    <p class="ft2-note">Disclaimer: Sandrock does not guarantee search rankings or a number of leads. Results depend on your market, reviews and competition. Sandrock does not inspect homes, give engineering advice or quote prices.</p>
+    <p class="ft2-note">Disclaimer: Sandrock does not guarantee search rankings or a number of leads. Results depend on your local market and competition. Sandrock does not inspect homes or give engineering advice or quote prices.</p>
     <nav class="ft2-links" aria-label="Legal" style="padding:0"><a href="/terms">Terms of Service</a><a href="/privacy">Privacy Policy</a><a href="/privacy#recording">Call Recording Notice</a><a href="/privacy#accessibility">Accessibility</a></nav>
-    <p class="ft2-upd">Last updated: November 11, 2026</p>
+    <p class="ft2-upd">Last updated: 11 November 2026</p>
     <p class="ft2-copy">© 2026 Sandrock. All rights reserved.</p>
   </div>
 </footer>"""
@@ -139,24 +139,24 @@ def items(rows, kind):
 step_items = items(steps, "open") + items(booked_steps, "booked")
 
 faqs = [
+    ("What do I get in the free lead audit?",
+     "We look up how many homeowners search for foundation work in your service area and show you which companies are getting those leads today. It is yours to keep whether you work with us or not."),
     ("Are the leads shared with other contractors?",
-     "No. Leads come from your own website, Google Business Profile and phone number, so they go to you and no one else."),
+     "No. Leads come from your own website and Google Business Profile and phone number so they go to you and no one else."),
     ("Do you guarantee rankings or a number of leads?",
-     "No, and you should be wary of anyone who does. Results depend on your market, reviews and competition. We show you exactly what moved every month."),
+     "No and you should be wary of anyone who does. Results depend on your market and competition. We show you exactly what moved every month."),
     ("How long until we see leads?",
-     "SEO builds over months, not days. On the call we look at your market and your current site and tell you honestly what to expect."),
+     "SEO builds over months not days. On the call we look at your market and your current site and tell you honestly what to expect."),
     ("What makes a lead qualified?",
-     "You decide. We screen for the job types you want, addresses inside your service area and homeowners ready to book an inspection."),
+     "You decide. We screen for the job types you want and addresses inside your service area so you only drive out to real jobs."),
     ("We already pay for Angi or HomeAdvisor. Do we stop?",
-     "Not on day one. Most contractors keep them running while their own leads grow, then cut back once the numbers show it's safe."),
+     "Not on day one. Most contractors keep them running while their own leads grow and cut back once the numbers show it is safe."),
     ("Do you work with new-construction foundation crews?",
-     "Yes. For builders and GCs we focus on the searches and pages that bring in bid requests, alongside homeowner repair work if you do both."),
-    ("Who answers the calls?",
-     "Your team does. If you'd like help covering calls while your crews are on site, we can screen and book them for you too."),
+     "Yes. For builders and GCs we focus on the searches and pages that bring in bid requests alongside homeowner repair work if you do both."),
     ("Does it work with our CRM?",
-     "Each lead is sent to your team, and we can send it into the CRM you already use, such as Jobber, ServiceTitan or Housecall Pro. Using something else? Bring it up on the call."),
+     "Each lead is sent to your team and we can send it into the CRM you already use like Jobber or ServiceTitan or Housecall Pro. Using something else? Bring it up on the call."),
     ("What does it cost?",
-     "We go over pricing on the call, once we know your market, your service area and how many leads you want."),
+     "We go over pricing on the call once we know your market and how many leads you want."),
 ]
 faq_items = "".join(f"<details><summary>{q}</summary><p>{a}</p></details>" for q, a in faqs)
 tip_items = "".join(f"<li>{CHECK}{t}</li>" for t in tips)
@@ -231,7 +231,7 @@ try {{ const n = sessionStorage.getItem('sandrock_name'); const el = document.qu
 
 privacy = """<article class="wrap doc">
   <h1>Privacy Policy</h1>
-  <p class="upd">Last updated: November 11, 2026</p>
+  <p class="upd">Last updated: 11 November 2026</p>
   <p>This policy explains what Sandrock collects through this website and how we use it.</p>
   <h2>What we collect</h2>
   <p>When you fill out our form, we collect your name, phone number, email and your answers to our questions. We also record the page you came from and any campaign tags in the link (such as utm_source).</p>
@@ -251,7 +251,7 @@ privacy = """<article class="wrap doc">
 
 terms = """<article class="wrap doc">
   <h1>Terms of Service</h1>
-  <p class="upd">Last updated: November 11, 2026</p>
+  <p class="upd">Last updated: 11 November 2026</p>
   <p>These terms apply to your use of this website. By using the site or submitting our form, you agree to them.</p>
   <h2>What this site is</h2>
   <p>This site describes Sandrock's lead generation and booking service for foundation contractors and lets you request a call with us. Submitting the form does not create a contract for services; any service is covered by a separate written agreement.</p>
