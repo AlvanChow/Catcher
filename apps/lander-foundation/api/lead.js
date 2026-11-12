@@ -6,7 +6,7 @@
 // Environment (set in Vercel, never committed):
 //   RESEND_API_KEY  Resend API key
 //   LEAD_TO         where leads go; comma-separated for several addresses
-//   LEAD_FROM       sender, e.g. "Catcher Leads <leads@catchersolutions.com>" once that domain
+//   LEAD_FROM       sender, e.g. "Sandrock Leads <leads@your-domain.com>" once that domain
 //                   is verified in Resend; defaults to Resend's test sender
 const crypto = require('node:crypto');
 
@@ -70,7 +70,7 @@ module.exports = async function handler(req, res) {
 
   const key = process.env.RESEND_API_KEY;
   const to = (process.env.LEAD_TO || '').split(',').map((s) => s.trim()).filter(Boolean);
-  const from = process.env.LEAD_FROM || 'Catcher Leads <onboarding@resend.dev>';
+  const from = process.env.LEAD_FROM || 'Sandrock Leads <onboarding@resend.dev>';
   if (!key || !to.length) {
     console.error('lead: RESEND_API_KEY or LEAD_TO is not set');
     return res.status(500).json({ error: 'Not configured' });
@@ -95,11 +95,11 @@ module.exports = async function handler(req, res) {
 
   const title = { contact: 'Foundation lead (step 1)', complete: 'Foundation lead finished the form', booked: 'Foundation lead booked a call' }[stage];
   const subject = `${title}: ${lead.name}${lead.website ? ` · ${lead.website}` : ''}`;
-  const html = `<div style="font-family:-apple-system,Helvetica,Arial,sans-serif;color:#1b1f2e">
+  const html = `<div style="font-family:-apple-system,Helvetica,Arial,sans-serif;color:#1f2a30">
 <h2 style="margin:0 0 4px;font-size:20px">${esc(title)}</h2>
-<p style="margin:0 0 16px;color:#596078">${{ contact: 'They gave their contact details. Answers follow if they finish the form.', complete: 'Every answer is below. Next they pick a time.', booked: 'They booked a call in Calendly. The time is in the Calendly invite.' }[stage]}</p>
+<p style="margin:0 0 16px;color:#5d6670">${{ contact: 'They gave their contact details. Answers follow if they finish the form.', complete: 'Every answer is below. Next they pick a time.', booked: 'They booked a call in Calendly. The time is in the Calendly invite.' }[stage]}</p>
 <table cellpadding="8" style="border-collapse:collapse;font-size:14px">${rows
-    .map(([k, v]) => `<tr><td style="border-top:1px solid #cde0e4;color:#596078;white-space:nowrap;vertical-align:top">${esc(k)}</td><td style="border-top:1px solid #cde0e4">${esc(v)}</td></tr>`)
+    .map(([k, v]) => `<tr><td style="border-top:1px solid #ddd3c4;color:#5d6670;white-space:nowrap;vertical-align:top">${esc(k)}</td><td style="border-top:1px solid #ddd3c4">${esc(v)}</td></tr>`)
     .join('')}</table></div>`;
   const text = rows.map(([k, v]) => `${k}: ${v}`).join('\n');
 
