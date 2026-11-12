@@ -27,6 +27,9 @@ h1 em { display: block; font-style: normal; color: var(--teal); }
 @media (max-width: 960px) { .ty-icon { position: static; width: 170px; height: 156px; margin: 0 auto 10px; } }
 @keyframes ty-pop { from { transform: scale(.6); opacity: 0; } to { transform: none; opacity: 1; } }
 @media (prefers-reduced-motion: reduce) { .ty-icon { animation: none; } }
+.ty-sway { transform-origin: 120px 40px; animation: ty-sway 4s ease-in-out .7s infinite; }
+@keyframes ty-sway { 0%, 100% { transform: rotate(-1.5deg); } 50% { transform: rotate(1.5deg); } }
+@media (prefers-reduced-motion: reduce) { .ty-sway { animation: none; } }
 #confetti { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 40; }
 .sub-lead { margin-top: 18px !important; color: var(--ink) !important; font-size: 21px !important; font-weight: 600; }
 .sub-lead + .sub { margin-top: 8px; }
