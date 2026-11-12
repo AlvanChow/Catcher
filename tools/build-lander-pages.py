@@ -24,7 +24,10 @@ nav { display: flex; justify-content: center; padding: 22px 0; }
 h1 { margin: 0; font-size: clamp(36px, 5.4vw, 60px); line-height: 1.04; letter-spacing: -0.035em; font-weight: 700; text-wrap: balance; }
 h1 em { display: block; font-style: normal; color: var(--teal); }
 .ty-hero { position: relative; }
-.ty-icon { display: flex; justify-content: center; margin: 0 auto 14px; animation: ty-pop .6s cubic-bezier(.2,.9,.3,1.3) both; }
+.ty-icon { position: absolute; left: -40px; top: 30px; width: 300px; height: 300px; pointer-events: none; animation: ty-pop .7s cubic-bezier(.2,.9,.3,1.3) both; }
+.ty-icon svg { width: 100%; height: 100%; }
+@media (max-width: 1180px) { .ty-icon { width: 220px; height: 220px; left: -30px; top: 50px; } }
+@media (max-width: 960px) { .ty-icon { position: static; width: 120px; height: 120px; margin: 0 auto 14px; } }
 @keyframes ty-pop { from { transform: scale(.6); opacity: 0; } to { transform: none; opacity: 1; } }
 @media (prefers-reduced-motion: reduce) { .ty-icon { animation: none; } }
 #confetti { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 40; }
@@ -162,7 +165,7 @@ faqs = [
 faq_items = "".join(f"<details><summary>{q}</summary><p>{a}</p></details>" for q, a in faqs)
 tip_items = "".join(f"<li>{CHECK}{t}</li>" for t in tips)
 confirmation = f"""<section class="wrap hero ty-hero">
-  <div class="ty-icon" aria-hidden="true"><svg viewBox="0 0 120 120" width="84" height="84">
+  <div class="ty-icon" aria-hidden="true"><svg viewBox="0 0 120 120">
   <circle cx="60" cy="60" r="56" fill="#e0f7f7"/>
   <g fill="none" stroke-linecap="round" stroke-linejoin="round" transform="rotate(-10 60 64) translate(-6 2)">
     <path d="M85 51 L106 82" stroke="#0a8582" stroke-width="7"/>
