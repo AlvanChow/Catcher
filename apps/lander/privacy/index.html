@@ -21,15 +21,12 @@ nav { display: flex; justify-content: center; padding: 22px 0; }
 h1 { margin: 0; font-size: clamp(36px, 5.4vw, 60px); line-height: 1.04; letter-spacing: -0.035em; font-weight: 700; text-wrap: balance; }
 h1 em { display: block; font-style: normal; color: var(--teal); }
 .ty-hero { position: relative; }
-.ty-icon { position: absolute; left: -80px; top: 10px; width: 300px; height: 275px; pointer-events: none; animation: ty-pop .7s cubic-bezier(.2,.9,.3,1.3) both; }
+.ty-icon { position: absolute; left: -80px; top: 10px; width: 300px; height: 275px; pointer-events: none; }
 .ty-icon svg { width: 100%; height: 100%; }
 @media (max-width: 1180px) { .ty-icon { width: 200px; height: 183px; left: 0; top: 40px; } }
 @media (max-width: 960px) { .ty-icon { position: static; width: 170px; height: 156px; margin: 0 auto 10px; } }
 @keyframes ty-pop { from { transform: scale(.6); opacity: 0; } to { transform: none; opacity: 1; } }
 @media (prefers-reduced-motion: reduce) { .ty-icon { animation: none; } }
-.ty-sway { transform-origin: 120px 40px; animation: ty-sway 4s ease-in-out .7s infinite; }
-@keyframes ty-sway { 0%, 100% { transform: rotate(-1.5deg); } 50% { transform: rotate(1.5deg); } }
-@media (prefers-reduced-motion: reduce) { .ty-sway { animation: none; } }
 #confetti { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 40; }
 .sub-lead { margin-top: 18px !important; color: var(--ink) !important; font-size: 21px !important; font-weight: 600; }
 .sub-lead + .sub { margin-top: 8px; }
