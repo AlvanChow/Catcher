@@ -95,11 +95,11 @@ module.exports = async function handler(req, res) {
 
   const title = { contact: 'Foundation lead (step 1)', complete: 'Foundation lead finished the form', booked: 'Foundation lead booked a call' }[stage];
   const subject = `${title}: ${lead.name}${lead.website ? ` · ${lead.website}` : ''}`;
-  const html = `<div style="font-family:-apple-system,Helvetica,Arial,sans-serif;color:#1f2a30">
+  const html = `<div style="font-family:-apple-system,Helvetica,Arial,sans-serif;color:#2b2420">
 <h2 style="margin:0 0 4px;font-size:20px">${esc(title)}</h2>
-<p style="margin:0 0 16px;color:#5d6670">${{ contact: 'They gave their contact details. Answers follow if they finish the form.', complete: 'Every answer is below. Next they pick a time.', booked: 'They booked a call in Calendly. The time is in the Calendly invite.' }[stage]}</p>
+<p style="margin:0 0 16px;color:#6f6257">${{ contact: 'They gave their contact details. Answers follow if they finish the form.', complete: 'Every answer is below. Next they pick a time.', booked: 'They booked a call in Calendly. The time is in the Calendly invite.' }[stage]}</p>
 <table cellpadding="8" style="border-collapse:collapse;font-size:14px">${rows
-    .map(([k, v]) => `<tr><td style="border-top:1px solid #ddd3c4;color:#5d6670;white-space:nowrap;vertical-align:top">${esc(k)}</td><td style="border-top:1px solid #ddd3c4">${esc(v)}</td></tr>`)
+    .map(([k, v]) => `<tr><td style="border-top:1px solid #ecdcc8;color:#6f6257;white-space:nowrap;vertical-align:top">${esc(k)}</td><td style="border-top:1px solid #ecdcc8">${esc(v)}</td></tr>`)
     .join('')}</table></div>`;
   const text = rows.map(([k, v]) => `${k}: ${v}`).join('\n');
 
